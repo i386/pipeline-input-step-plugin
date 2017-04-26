@@ -179,6 +179,7 @@ public class InputStepExecution extends AbstractStepExecutionImpl implements Mod
      *
      * @param params A map that represents the parameters sent in the request
      * @return A HttpResponse object that represents Status code (200) indicating the request succeeded normally.
+     * @since 2.6
      */
     public HttpResponse proceed(@CheckForNull Map<String,Object> params) {
         User user = User.current();
@@ -203,6 +204,15 @@ public class InputStepExecution extends AbstractStepExecutionImpl implements Mod
         // TODO: record this decision to FlowNode
 
         return HttpResponses.ok();
+    }
+
+    /**
+     * @param v parameters sent in request
+     * @return A HttpResponse object that represents Status code (200) indicating the request succeeded normally.
+     * @deprecated since 2.7 - use {{@link #proceed(Map)}}
+     */
+    public HttpResponse proceed(Object v) {
+        return proceed((Map<String, Object>)v);
     }
 
     /**
